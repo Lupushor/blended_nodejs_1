@@ -1,5 +1,17 @@
-const app = require("./app");
+require('dotenv').config();
 
-app.listen(8080, () => {
-  console.log("Server is runing");
-});
+const app = require("./app");
+const mongoose = require('mongoose');
+const connectDB = require('./db/connectDB');
+
+const { DB_URI } = process.env;
+
+// IIFE
+(async () => {
+  await connectDB(DB_URI);
+  console.log("DB connection succes");
+
+  app.listen(8080, () => {
+    console.log("Server is runing");
+  });
+})();

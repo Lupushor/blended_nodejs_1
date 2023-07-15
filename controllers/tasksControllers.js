@@ -24,6 +24,7 @@ const getTask = async (req, res, next) => {
     next(error);
   }
 };
+
 const addTask = async (req, res, next) => {
   try {
     const task = await addTaskService(req.body);
@@ -33,6 +34,7 @@ const addTask = async (req, res, next) => {
     next(error);
   }
 };
+
 const updateTask = async (req, res, next) => {
   try {
     const { taskId } = req.params;
@@ -43,6 +45,7 @@ const updateTask = async (req, res, next) => {
     next(error);
   }
 };
+
 const deleteTask = async (req, res, next) => {
   try {
     const { taskId } = req.params;
