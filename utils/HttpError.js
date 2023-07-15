@@ -20,6 +20,6 @@ class HttpError extends Error {
     super(message);
     this.statusCode = statusCode;
   }
-}
+};
 
 module.exports = HttpError;

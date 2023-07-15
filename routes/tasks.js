@@ -6,12 +6,14 @@ const {
   updateTask,
   deleteTask,
 } = require("../controllers/tasksControllers");
+const validateBody = require('../utils/validateBody');
+const { addTaskValidationSchema, updateTaskValidationSchema } = require('../utils/validation/tasksValidationSchemas');
 
 const router = Router();
 
 //1 version
-router.route("/").get(getAllTasks).post(addTask);
-router.route("/:taskId").get(getTask).patch(updateTask).delete(deleteTask);
+router.route("/").get(getAllTasks).post(validateBody(addTaskValidationSchema), addTask);
+router.route("/:taskId").get(getTask).patch(validateBody(updateTaskValidationSchema), updateTask).delete(deleteTask);
 
 //2 version
 // router.get("/");
