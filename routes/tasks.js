@@ -6,10 +6,14 @@ const {
   updateTask,
   deleteTask,
 } = require("../controllers/tasksControllers");
-const validateBody = require('../utils/validateBody');
+const {validateBody} = require('../utils/validateBody');
 const { addTaskValidationSchema, updateTaskValidationSchema } = require('../utils/validation/tasksValidationSchemas');
 
+const { auth } = require('../middlewares/auth');
+
 const router = Router();
+
+router.use(auth);
 
 //1 version
 router.route("/").get(getAllTasks).post(validateBody(addTaskValidationSchema), addTask);
